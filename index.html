@@ -3,15 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>로또 번호 생성기</title>
-  <link href='style.css' rel='stylesheet'>
+  <title>오늘 저녁 뭐 먹지?</title>
+  <link href="style.css" rel="stylesheet">
 </head>
 <body>
   <button id="themeToggle" aria-label="테마 전환">🌙</button>
+
   <div class="container">
-    <h1>🎱 로또 번호 생성기</h1>
-    <button id="generateBtn">번호 생성</button>
+    <h1>🍽️ 오늘 저녁 뭐 먹지?</h1>
+    <p class="subtitle">메뉴 고르기 싫을 때, 그냥 맡겨!</p>
+
+    <div class="filters">
+      <button class="filter-btn active" data-cat="all">전체</button>
+      <button class="filter-btn" data-cat="korean">한식</button>
+      <button class="filter-btn" data-cat="chinese">중식</button>
+      <button class="filter-btn" data-cat="japanese">일식</button>
+      <button class="filter-btn" data-cat="western">양식</button>
+      <button class="filter-btn" data-cat="quick">분식</button>
+    </div>
+
+    <button id="spinBtn">추천받기 🎲</button>
+
     <div id="result"></div>
+
     <a href="contact.html" class="contact-link">🤝 제휴 문의</a>
   </div>
 
@@ -23,7 +37,7 @@
   <script>
     var disqus_config = function () {
       this.page.url = 'https://cmbboo.github.io/product-builder-lecture/';
-      this.page.identifier = 'lotto-home';
+      this.page.identifier = 'dinner-home';
     };
     (function() {
       var d = document, s = d.createElement('script');

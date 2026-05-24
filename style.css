@@ -4,7 +4,6 @@
   padding: 0;
 }
 
-/* ── 테마 변수 ── */
 :root[data-theme="dark"] {
   --bg: #1a1a2e;
   --surface: #16213e;
@@ -12,6 +11,10 @@
   --subtext: #aaaacc;
   --btn-bg: #e94560;
   --btn-hover: #c73652;
+  --filter-active-bg: #e94560;
+  --filter-active-text: #fff;
+  --filter-bg: rgba(255,255,255,0.07);
+  --filter-text: #aaaacc;
   --toggle-bg: rgba(255,255,255,0.1);
   --toggle-hover: rgba(255,255,255,0.2);
 }
@@ -23,6 +26,10 @@
   --subtext: #555577;
   --btn-bg: #e94560;
   --btn-hover: #c73652;
+  --filter-active-bg: #e94560;
+  --filter-active-text: #fff;
+  --filter-bg: rgba(0,0,0,0.06);
+  --filter-text: #555577;
   --toggle-bg: rgba(0,0,0,0.08);
   --toggle-hover: rgba(0,0,0,0.15);
 }
@@ -33,12 +40,12 @@ body {
   color: var(--text);
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   transition: background 0.3s, color 0.3s;
 }
 
-/* ── 테마 토글 버튼 ── */
+/* ── 테마 토글 ── */
 #themeToggle {
   position: fixed;
   top: 20px;
@@ -54,85 +61,104 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
-
-#themeToggle:hover {
-  background: var(--toggle-hover);
-  transform: rotate(20deg);
-}
+#themeToggle:hover { background: var(--toggle-hover); transform: rotate(20deg); }
 
 /* ── 메인 레이아웃 ── */
 .container {
   text-align: center;
-  padding: 40px 20px;
+  padding: 60px 20px 40px;
   width: 100%;
-  max-width: 480px;
+  max-width: 560px;
 }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 30px;
+h1 { font-size: 2rem; margin-bottom: 8px; }
+
+.subtitle {
+  color: var(--subtext);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
 }
 
-#generateBtn {
+/* ── 필터 버튼 ── */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.filter-btn {
+  background: var(--filter-bg);
+  color: var(--filter-text);
+  border: none;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.filter-btn:hover { opacity: 0.8; }
+.filter-btn.active {
+  background: var(--filter-active-bg);
+  color: var(--filter-active-text);
+  font-weight: 600;
+}
+
+/* ── 추천 버튼 ── */
+#spinBtn {
   background: var(--btn-bg);
   color: #fff;
   border: none;
-  padding: 14px 40px;
+  padding: 14px 44px;
   font-size: 1.1rem;
+  font-weight: 600;
   border-radius: 30px;
   cursor: pointer;
-  transition: transform 0.1s, background 0.2s;
+  transition: background 0.2s, transform 0.1s;
 }
+#spinBtn:hover  { background: var(--btn-hover); }
+#spinBtn:active { transform: scale(0.96); }
 
-#generateBtn:hover  { background: var(--btn-hover); }
-#generateBtn:active { transform: scale(0.96); }
-
-/* ── 결과 영역 ── */
+/* ── 결과 카드 ── */
 #result {
   margin-top: 36px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  align-items: center;
 }
 
-.ticket {
+.menu-card {
   background: var(--surface);
-  padding: 14px 18px;
   border-radius: 16px;
+  padding: 18px 20px;
   display: flex;
-  gap: 10px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  animation: slideUp 0.35s ease both;
   transition: background 0.3s;
 }
 
-/* ── 번호 공 ── */
-.ball {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.menu-emoji { font-size: 2.4rem; line-height: 1; }
+
+.menu-info {
+  text-align: left;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #fff;
-  animation: pop 0.35s ease both;
+  flex-direction: column;
+  gap: 4px;
 }
+.menu-info strong { font-size: 1.1rem; }
+.menu-info span   { font-size: 0.875rem; color: var(--subtext); }
 
-@keyframes pop {
-  0%   { transform: scale(0); opacity: 0; }
-  70%  { transform: scale(1.15); }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.ball.range1 { background: #f5c518; color: #333; }
-.ball.range2 { background: #5b9bd5; }
-.ball.range3 { background: #e94560; }
-.ball.range4 { background: #888; }
-.ball.range5 { background: #4caf50; }
-
+/* ── 제휴 문의 링크 ── */
 .contact-link {
   display: inline-block;
   margin-top: 36px;
@@ -144,10 +170,7 @@ h1 {
   border-radius: 20px;
   transition: color 0.2s, border-color 0.2s;
 }
-.contact-link:hover {
-  color: var(--text);
-  border-color: var(--text);
-}
+.contact-link:hover { color: var(--text); border-color: var(--text); }
 
 /* ── Disqus ── */
 .disqus-wrap {
@@ -156,5 +179,4 @@ h1 {
   margin: 60px auto 0;
   padding: 0 20px 60px;
 }
-
 #disqus_thread a { color: var(--btn-bg); }
