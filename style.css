@@ -1,1 +1,83 @@
-/* Add styles here */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #1a1a2e;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  text-align: center;
+  padding: 40px;
+}
+
+h1 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+#generateBtn {
+  background: #e94560;
+  color: #fff;
+  border: none;
+  padding: 14px 40px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.2s;
+}
+
+#generateBtn:hover {
+  background: #c73652;
+}
+
+#generateBtn:active {
+  transform: scale(0.96);
+}
+
+#result {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.ticket {
+  display: flex;
+  gap: 10px;
+}
+
+.ball {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff;
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0%   { transform: scale(0); opacity: 0; }
+  70%  { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* 번호 구간별 색상 */
+.ball.range1 { background: #f5c518; color: #333; } /* 1~10  노랑 */
+.ball.range2 { background: #5b9bd5; }               /* 11~20 파랑 */
+.ball.range3 { background: #e94560; }               /* 21~30 빨강 */
+.ball.range4 { background: #888; }                  /* 31~40 회색 */
+.ball.range5 { background: #4caf50; }               /* 41~45 초록 */
