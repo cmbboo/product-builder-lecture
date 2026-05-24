@@ -14,6 +14,24 @@
     <div id="result"></div>
     <a href="contact.html" class="contact-link">🤝 제휴 문의</a>
   </div>
+
+  <div class="disqus-wrap">
+    <div id="disqus_thread"></div>
+  </div>
+
   <script src="main.js"></script>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://cmbboo.github.io/product-builder-lecture/';
+      this.page.identifier = 'lotto-home';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://productbuilder-6sm2g25jne.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>댓글을 보려면 JavaScript를 활성화해 주세요. <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </body>
 </html>

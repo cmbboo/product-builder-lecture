@@ -148,3 +148,13 @@ h1 {
   color: var(--text);
   border-color: var(--text);
 }
+
+/* ── Disqus ── */
+.disqus-wrap {
+  width: 100%;
+  max-width: 720px;
+  margin: 60px auto 0;
+  padding: 0 20px 60px;
+}
+
+#disqus_thread a { color: var(--btn-bg); }
