@@ -132,3 +132,19 @@ h1 {
 .ball.range3 { background: #e94560; }
 .ball.range4 { background: #888; }
 .ball.range5 { background: #4caf50; }
+
+.contact-link {
+  display: inline-block;
+  margin-top: 36px;
+  color: var(--subtext);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: 1.5px solid var(--subtext);
+  padding: 8px 20px;
+  border-radius: 20px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.contact-link:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
